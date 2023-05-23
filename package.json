@@ -1,0 +1,30 @@
+{
+    "name": "@nfjs/winston-logger",
+    "version": "1.0.0",
+    "description": "Logger",
+    "license": "MIT",
+    "type": "module",
+    "main": "index.js",
+    "author": {
+        "name": "Andrey Maksimov",
+        "email": "andrmaxmail@gmail.com"
+    },
+    "contributors": [
+        {
+            "name": "Dmitry Boikov",
+            "email": "boikovdv@gmail.com"
+        },
+        {
+            "name": "Azat Yamalov",
+            "email": "yamalov.azat@live.com"
+        }
+    ],
+    "dependencies": {
+        "@nfjs/core": "^1.0.0",
+        "winston": "^3.5.1"
+    },
+    "exports": {
+        ".": "./index.js",
+        "./nf-module.js": "./nf-module.js"
+    }
+}
