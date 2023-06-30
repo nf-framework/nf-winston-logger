@@ -29,7 +29,7 @@
 
 Настройки логгера по умолчанию выглядят следующим образом
 ```json
-"@nf/winston-logger": {
+"@nfjs/winston-logger": {
     "default": {
         "levels": "syslog",
         "formats": {
@@ -73,7 +73,7 @@ const logger = winston.createLogger({
 ### Пример использования
 Работает только при запущенном полностью приложении, так как помещается в контейнер при старте приложения.
 ```js
-import { container } from '@nf/core';
+import { container } from '@nfjs/core';
 import { v4 } from 'uuid/v4';
 // Из контейнера логгеров выбрали настроенный, например, только для интеграционных сервисов
 const logger = container.loggers.get('integrations');
