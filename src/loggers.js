@@ -23,8 +23,8 @@ const defaultLogger = {
 };
 
 class Loggers {
-    constructor({config}) {
-        this.config =  Object.assign({}, { default: defaultLogger }, config?.['@nfjs/winston-logger'] ?? {});
+    constructor({ config }) {
+        this.config = Object.assign({}, { default: defaultLogger }, config?.['@nfjs/winston-logger'] ?? {});
         this.container = new winston.Container();
         Object.keys(this.config).forEach((loggerName) => {
             const loggerCfg = this.config[loggerName];
@@ -41,6 +41,15 @@ class Loggers {
                 return new winston.transports[transportCfg.type || defaultLogger.transports.default.type](transportOptions);
             });
             this.container.add(loggerName, loggerOptions);
+
+            if (loggerCfg.replaceConsoleLog) {
+                const logger = this.container.get(loggerName);
+                console.log = (...args) => logger.info.call(logger, ...args);
+                console.info = (...args) => logger.info.call(logger, ...args);
+                console.warn = (...args) => logger.warn.call(logger, ...args);
+                console.error = (...args) => logger.error.call(logger, ...args);
+                console.debug = (...args) => logger.debug.call(logger, ...args);
+            }
         });
     }
 
